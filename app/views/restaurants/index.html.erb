@@ -1,23 +1,47 @@
-<a href="/restaurants/new">Add a restaurant</a> <br> <br>
-<% if @restaurants.any? %>
-  <% @restaurants.each do |restaurant| %>
-    <h2><%= link_to restaurant.name, restaurant_path(restaurant) %> </h2>
-    <h3> Average rating: <%= restaurant.average_rating.to_i %></h3>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/restaurants/new">Add a restaurant</a>
+    <br>
+    <br>
+    <% if @restaurants.any? %>
+    <% @restaurants.each do |restaurant| %>
+    <h2><%= link_to restaurant.name, restaurant_path(restaurant) %>
+    </h2>
+    <h3>
+      Average rating:
+      <%= restaurant.average_rating.to_i %></h3>
     <br>
     <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
     <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %>
     <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
     <br>
-      <% if restaurant.reviews.any? %>
-          <% restaurant.reviews.each do |review| %>
-            Thoughts on <%= restaurant.name %>: <%= review.thoughts %> <br>
-            <b>Rating on <%= restaurant.name %>: <%= review.rating %> </b><br> <br>
-            <%= link_to "Delete Review", restaurant_review_path(restaurant, review), method: :delete %>
-          <% end %>
-        <% else %>
-          No reviews for <%= restaurant.name %> <br> <br>
-        <% end %>
-  <% end %>
-<% else %>
-  No restaurants yet
-<% end %>
+    <% if restaurant.reviews.any? %>
+    <% restaurant.reviews.each do |review| %>
+    Thoughts on
+    <%= restaurant.name %>:
+    <%= review.thoughts %>
+    <br>
+    <b>Rating on
+      <%= restaurant.name %>:
+      <%= review.rating %>
+    </b><br>
+    <br>
+    <%= link_to "Delete Review", restaurant_review_path(restaurant, review), method: :delete %>
+    <% end %>
+    <% else %>
+    No reviews for
+    <%= restaurant.name %>
+    <br>
+    <br>
+    <% end %>
+    <% end %>
+    <% else %>
+    No restaurants yet
+    <% end %>
+  </body>
+</html>
