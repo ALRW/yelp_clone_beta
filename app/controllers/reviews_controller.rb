@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
@@ -24,7 +25,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
+    p @review = Review.find(params[:id])
     if current_user
     if @review.user_id == current_user.id
       @review.destroy

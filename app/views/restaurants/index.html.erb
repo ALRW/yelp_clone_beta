@@ -31,9 +31,12 @@
       <%= review.rating %>
     </b><br>
     <br>
+    <br>
+    <p><%= link_to "Endorse Review", review_endorsements_path(review), method: :post %></p>
+    <p><%= pluralize(review.endorsements.count, "endorsement")%></p></br>
     <p>Reviewed: <%= time_since(review)%></p>
     <br></br>
-    <%= link_to "Delete Review", restaurant_review_path(restaurant, review), method: :delete %>
+    <%= link_to "Delete Review", review_path(review), method: :delete %>
     <% end %>
     <% else %>
     No reviews for
