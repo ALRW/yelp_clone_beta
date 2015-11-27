@@ -31,6 +31,14 @@ feature 'reviewing' do
     click_link("Sign out")
     signup_signin_user2
     leave_review('Great', '5')
-    expect(page).to have_content('Average rating: 4')
+    expect(page).to have_content('Average rating: ★★★★☆')
+  end
+
+  scenario 'displays when the review was created' do
+    signup_signin
+    create_restaurant
+    leave_review('not shabby', '4')
+    p @review = Review.last
+    expect(page).to have_content("Reviewed: 0 seconds ago")
   end
 end

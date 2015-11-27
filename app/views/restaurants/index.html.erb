@@ -14,7 +14,7 @@
     </h2>
     <h3>
       Average rating:
-      <%= restaurant.average_rating.to_i %></h3>
+      <%= star_rating(restaurant.average_rating) %></h3>
     <br>
     <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
     <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %>
@@ -31,6 +31,8 @@
       <%= review.rating %>
     </b><br>
     <br>
+    <p>Reviewed: <%= time_since(review)%></p>
+    <br></br>
     <%= link_to "Delete Review", restaurant_review_path(restaurant, review), method: :delete %>
     <% end %>
     <% else %>
